@@ -44,14 +44,14 @@ function displayPhotos() {
             target: '_blank',
         });
         // Create <img>for photo
-        const img = document.getElement('img');
+        const img = document.createElement('img');
         setAttributes(img, {
             src: photo.urls.regular,
             alt: photo.alt_description,
             title: photo.title_description,
         });
         // Event Listenner, check when each is finished loading
-        img.addEventListener('load',)
+        img.addEventListener('load', imageLoaded)
         // Put <img> inside <a>, then put both inside imageContainer ELement
         item.appendChild(img);
         imageContainer.appendChild(item);
@@ -73,6 +73,7 @@ async function getPhotos() {
 // Check to see if scrolling near bottom of page, Load More Photos
 window.addEventListener('scroll',() => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
+        ready = false;
         getPhotos();
     }
 });
